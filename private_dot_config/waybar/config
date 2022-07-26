@@ -1,0 +1,226 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+//    "mode": "hide",
+    "height": 16,
+// auto toggle with ipc
+//    "bar_id": "bar-0",
+//    "ipc": true,
+
+
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode", 
+//        "custom/media", 
+        "wlr/taskbar",
+        "sway/window"
+    ],
+
+    "modules-center": ["custom/waybar-mpris",],
+
+    "modules-right": [
+//        "custom/scratchpad-indicator",
+        "idle_inhibitor", 
+//	"mpd",
+        "pulseaudio", 
+        "cpu", 
+        "memory",
+	"battery",
+        "custom/jdate", 
+        "clock",
+        "sway/language",
+        "tray"
+    ],
+
+    // Modules configuration
+     "sway/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+        // "format": "{name}: {icon}",
+        // "format-icons": {
+        //     "1": "",
+        //     "2": "",
+        //     "3": "",
+        //     "4": "",
+        //     "5": "",
+        //     "urgent": "",
+        //     "focused": "",
+        //     "default": ""
+        // }
+     },
+
+    "sway/mode": {
+      "format": "<span style=\"italic\"> {}</span>",
+      "max-length": 10
+    },
+
+    "sway/window": {
+      "format": " ->  {}",
+      "icon": false,
+      //"max-length": 50
+    },
+
+    //"sway/mode": {
+    //    "format": "<span style=\"italic\">{}</span>"
+    //},
+
+    "sway/language": {
+        "format": "{}",
+        "max-length": 50
+    },
+
+   // "mpd": {
+   //     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+   //     "format-disconnected": "Disconnected ",
+   //     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+   //     "unknown-tag": "N/A",
+   //     "interval": 2,
+   //     "consume-icons": {
+   //         "on": " "
+   //     },
+   //     "random-icons": {
+   //         "off": "<span color=\"#f53c3c\"></span> ",
+   //         "on": " "
+   //     },
+   //     "repeat-icons": {
+   //         "on": " "
+   //     },
+   //     "single-icons": {
+   //         "on": "1 "
+   //     },
+   //     "state-icons": {
+   //         "paused": "",
+   //         "playing": ""
+   //     },
+   //     "tooltip-format": "MPD (connected)",
+   //     "tooltip-format-disconnected": "MPD (disconnected)"
+   // },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 7
+    },
+
+    "battery": {
+        "format-alt": "{time} {icon}",
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        // "format-good": "", // An empty format will hide the module
+        "format-full": "",
+        "format-icons": ["", "", "", "", ""],
+        "states": {
+            /* "good": 70, */
+            "warning": 40,
+            "critical": 20
+        }
+    },
+
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>\n",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    
+    
+    "custom/jdate": { 
+        "format": "{}  ",
+        "interval": 60,
+        "exec": "jdate +'%y-%m-%d'",
+        "tooltip": "false",
+//        "on-click": "jcal"
+    },
+	
+	
+    "memory": {
+        "format": "{}% "
+    },
+
+    "pulseaudio": {
+        "scroll-step": 0.3, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+
+
+    "custom/scratchpad-indicator": {
+        "interval": 3,
+        "return-type": "json",
+        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '( select(.name == \"root\") | .nodes[] | select(.name == \"__i3\") | .nodes[] | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") }'",
+        "format": "{}  ﳶ ",
+        "on-click": "exec swaymsg 'scratchpad show'",
+        "on-click-right": "exec swaymsg 'move scratchpad'"
+    },
+
+
+    "custom/waybar-mpris": {
+    "return-type": "json",
+    "exec": "waybar-mpris --position --autofocus",
+    "on-click": "waybar-mpris --send toggle",
+    // This option will switch between players on right click.
+        "on-click-right": "waybar-mpris --send player-next",
+    // The options below will switch the selected player on scroll
+        // "on-scroll-up": "waybar-mpris --send player-next",
+        // "on-scroll-down": "waybar-mpris --send player-prev",
+    // The options below will go to next/previous track on scroll
+        // "on-scroll-up": "waybar-mpris --send next",
+        // "on-scroll-down": "waybar-mpris --send prev",
+    "escape": true,
+    },
+
+   "wlr/taskbar": {
+       "format": "{icon}",
+       "icon-size": 12,
+       "tooltip-format": "{title}",
+       "on-click": "activate",
+       "on-click-middle": "close",
+       "ignore-list": [
+          "Alacritty"
+       ],
+       "app_ids-mapping": {
+         "firefoxdeveloperedition": "firefox-developer-edition"
+       }
+   }
+
+
+}

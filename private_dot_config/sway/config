@@ -1,0 +1,436 @@
+### Include other configs
+include /etc/sway/config.d/*
+
+
+seat * shortcuts_inhibitor enable
+### Variables
+    set {
+        # Logo key. Use Mod1 for Alt. Mod4 for super
+        $mod Mod4
+    
+        # Your preferred terminal emulator
+        $term_alter konsole 
+        $term alacritty
+        
+        # on the original workspace that the command was run on.
+#TODO: original workspace that command was run
+        $menu "wofi" 
+        
+        # $file_manager "alacritty -e nnn"
+        $file_manager gnome-terminal -e "zsh -c 'source .zshrc;nnn'"
+        
+        # calculator
+        $calc qalculate-gtk
+        
+        $lock_cmd "swaylock --image '/home/erfch/.local/share/wallpapers/steins;gate/3.png' -f -l --indicator-idle-visible -F"
+    
+        # (needed for wob)
+        $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+
+
+        $bindsym bindsym --to-code
+        $unbindsym unbindsym --to-code
+    }
+
+
+### Output configuration
+    # Default wallpaper
+    output * bg ~/.local/share/wallpapers/wallhaven-e7rprl.png stretch
+    # random wallpaper on $mod+y
+    bindsym --to-code $mod+y exec setrandom -r ~/.local/share/wallpapers  
+
+   # (nwg-displays config)
+    include ~/.config/sway/outputs
+
+
+### Idle configuration
+    exec swayidle -w \
+            timeout 120 'brightnessctl -s;brightnessctl s 3500' \
+            resume 'brightnessctl -r' \
+            timeout 300 'swaymsg "output * dpms off"' \
+            resume 'swaymsg "output * dpms on"' \
+            timeout 305 $lock_cmd \
+            timeout 600 'systemctl suspend' \
+            before-sleep 'playerctl pause' \
+            before-sleep $lock_cmd
+
+
+### Input configuration
+    # keyboard layout
+        input "type:keyboard" {            
+            xkb_layout us,ir
+            xkb_options grp:caps_toggle,altwin:swap_alt_win
+        }
+    # pc:
+        #input "type:pointer" {
+        #    accel_profile adaptive
+        #    pointer_accel 0
+        #    xkb_options "grp_led:cap"
+        #}
+    # laptop:
+        input "type:touchpad" {
+            natural_scroll enabled
+            dwt disabled
+            tap enabled
+            middle_emulation enabled
+            accel_profile adaptive
+            pointer_accel 0.4
+        }
+
+
+### font
+    font pango:Fira Code 10
+
+### Gestures 
+    # Allow switching between workspaces with left and right swipes
+    bindgesture swipe:right workspace prev
+    bindgesture swipe:left workspace next
+
+    # Allow container movements by pinching them
+    # bindgesture pinch:inward+up move up
+    # bindgesture pinch:inward+down move down
+    # bindgesture pinch:inward+left move left
+    # bindgesture pinch:inward+right move right
+
+### Key bindings
+    # Basics:
+        bindsym --to-code $mod+Shift+q kill
+        bindsym --to-code $mod+Shift+c reload
+        bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    
+    # Moving around:
+        bindsym --to-code $mod+h focus left
+        bindsym --to-code $mod+j focus down
+        bindsym --to-code $mod+k focus up
+        bindsym --to-code $mod+l focus right
+        # bindsym $mod+Left focus left
+        # bindsym $mod+Down focus down
+        # bindsym $mod+Up focus up
+        # bindsym $mod+Right focus right
+    
+        bindsym --to-code $mod+Shift+h move left
+        bindsym --to-code $mod+Shift+j move down
+        bindsym --to-code $mod+Shift+k move up
+        bindsym --to-code $mod+Shift+l move right
+        # bindsym $mod+Shift+Left move left
+        # bindsym $mod+Shift+Down move down
+        # bindsym $mod+Shift+Up move up
+        # bindsym $mod+Shift+Right move right
+    
+    # Workspaces:
+        # Note: workspaces can have any name you want, not just numbers.
+        # We just use 1-10 as the default.
+
+         (nwg-displays config)
+        include ~/.config/sway/workspaces
+        bindsym --to-code --no-repeat $mod+1 workspace number 1; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+2 workspace number 2; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+3 workspace number 3; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+4 workspace number 4; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+5 workspace number 5; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+6 workspace number 6; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+7 workspace number 7; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+8 workspace number 8; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+9 workspace number 9; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --no-repeat $mod+0 workspace number 10; exec "echo 1 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+1 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+2 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+3 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+4 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+5 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+6 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+7 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+8 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+9 exec "echo 0 > /tmp/sovpipe"
+        bindsym --to-code --release $mod+0 exec "echo 0 > /tmp/sovpipe"
+
+    
+        bindsym --to-code $mod+Shift+1 move container to workspace number 1
+        bindsym --to-code $mod+Shift+2 move container to workspace number 2
+        bindsym --to-code $mod+Shift+3 move container to workspace number 3
+        bindsym --to-code $mod+Shift+4 move container to workspace number 4
+        bindsym --to-code $mod+Shift+5 move container to workspace number 5
+        bindsym --to-code $mod+Shift+6 move container to workspace number 6
+        bindsym --to-code $mod+Shift+7 move container to workspace number 7
+        bindsym --to-code $mod+Shift+8 move container to workspace number 8
+        bindsym --to-code $mod+Shift+9 move container to workspace number 9
+        bindsym --to-code $mod+Shift+0 move container to workspace number 10
+    
+    # Layout stuff:
+        # move floating windows with cursor
+        floating_modifier $mod normal
+    
+        # You can "split" the current object of your focus
+        bindsym --to-code $mod+q split toggle
+    
+        # Switch the current container between different layout styles
+        bindsym --to-code $mod+s layout stacking
+        bindsym --to-code $mod+w layout tabbed
+        bindsym --to-code $mod+e layout toggle split
+    
+        bindsym --to-code $mod+f fullscreen
+    
+        bindsym $mod+Shift+space floating toggle
+    
+        # Swap focus between the tiling area and the floating area
+        bindsym $mod+space focus mode_toggle
+    
+        # Move focus to the parent container
+        bindsym --to-code $mod+a focus parent
+    
+        # Move focus to the next window using alt+tab
+        bindsym --inhibited Mod1+Tab focus next
+    
+    # Scratchpad:
+        bindsym $mod+Shift+minus move scratchpad
+        bindsym $mod+minus scratchpad show
+    
+    # Resizing containers:
+        mode "resize" {
+            bindsym --to-code left resize shrink width 20px
+            bindsym --to-code down resize grow height 20px
+            bindsym --to-code up resize shrink height 20px
+            bindsym --to-code right resize grow width 20px
+    
+            bindsym Left resize shrink width 20px
+            bindsym Down resize grow height 20px
+            bindsym Up resize shrink height 20px
+            bindsym Right resize grow width 20px
+    
+            bindsym Return mode "default"
+            bindsym Escape mode "default"
+            bindsym --to-code $mod+r mode "default"
+
+        }
+        bindsym --to-code $mod+r mode "resize"
+
+    # Applications
+        # Start a terminal
+        bindsym $mod+Return exec $term
+        bindsym $mod+Shift+Return exec $term --class=floating
+        bindsym $mod+Ctrl+Return exec $term_alter
+        bindsym $mod+Ctrl+Shift+Return exec $term_alter --class=floating
+        bindsym --to-code $mod+Shift+t exec $term --class=floating 
+    
+        #file manager
+        bindsym --to-code $mod+t exec $file_manager
+    
+        #calculator
+        bindsym --locked XF86Calculator exec $calc
+    
+        # Start your launcher
+        bindsym --to-code $mod+d exec $menu
+        bindsym --to-code $mod+c exec clipman pick -t $menu
+    
+    # Brightness/Audio
+        #brightness	
+        bindsym --locked XF86MonBrightnessDown exec brightnessctl set 2%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
+        bindsym --locked XF86MonBrightnessUp exec brightnessctl set +2% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
+    
+        # Audio output (volume up/down)
+        bindsym --locked XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +5%;pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga;pactl get-sink-volume @DEFAULT_SINK@ | sed -En 's/.* ([0-9]+)%.*/\1/p' >$WOBSOCK"
+        bindsym --locked XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%;pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga;pactl get-sink-volume @DEFAULT_SINK@ | sed -En 's/.* ([0-9]+)%.*/\1/p' >$WOBSOCK"
+        # Audio output (volume mute toggle)
+        bindsym --locked XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle;([[ $(pactl get-sink-mute @DEFAULT_SINK@) == 'Mute: yes' ]] && echo 0 > $WOBSOCK)|| pactl get-sink-volume @DEFAULT_SINK@ | sed -En 's/.* ([0-9]+)%.*/\1/p' >$WOBSOCK"
+    
+        # Audio input (volume mute toggle)
+        bindsym --locked XF86AudioMicMute exec "pactl set-source-mute @DEFAULT_SOURCE@ toggle;([[ $(pactl get-source-mute @DEFAULT_SOURCE@) == 'Mute: yes' ]] && echo 0 > $WOBSOCK)|| pactl get-source-volume @DEFAULT_SOURCE@ | sed -En 's/.* ([0-9]+)%.*/\1/p' >$WOBSOCK"
+    
+        # Audio input (volume up/down)
+        bindsym --locked Shift+XF86AudioRaiseVolume exec "pactl set-source-volume @DEFAULT_SOURCE@ +1%;pactl get-source-volume @DEFAULT_SOURCE@ | sed -En 's/.* ([0-9]+)%.*/\1/p' >$WOBSOCK"
+        bindsym --locked Shift+XF86AudioLowerVolume exec "pactl set-source-volume @DEFAULT_SOURCE@ -1%;pactl get-source-volume @DEFAULT_SOURCE@ | sed -En 's/.* ([0-9]+)%.*/\1/p' >$WOBSOCK"
+        
+        # playerctl commands ( bind to '[' , ']' )
+        bindcode --locked $mod+34 exec "playerctl previous"
+        bindcode --locked $mod+35 exec "playerctl next"
+        bindsym --locked --to-code $mod+p exec "playerctl play-pause" 
+        # TODO: icon for NOTIFICATION (playerctl metadata mpris:artUrl | cut -c 1-), maybe their is another way other than re-downloading the album art , maybe we should create a shell script for it. 
+        bindsym --locked --to-code $mod+o exec notify-send "$(playerctl metadata --format '{{ emoji(status) }}{{ title }}')" "$(playerctl metadata --format '{{ artist }} - {{ album }}\n{{ duration(position) }}|{{ duration(mpris:length)}}\n{{ playerName }}')" 
+    
+    # ScreenShot
+        bindsym --release Print exec "/usr/share/sway-git/scripts/grimshot save area - | swappy -f -"
+        bindsym --release Shift+Print exec "/usr/share/sway-git/scripts/grimshot save window - | swappy -f -"
+        bindsym --release Ctrl+Print exec "/usr/share/sway-git/scripts/grimshot save screen - | swappy -f -"
+    
+    # Notifications
+        # bindsym --to-code $mod+n exec "makoctl dismiss"
+        # bindsym --to-code $mod+Shift+n exec "makoctl dismiss -a"
+        bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
+
+    # Theme toggle
+        bindsym --to-code $mod+Ctrl+Shift+d exec "bash -c ~/.local/share/dark-mode.d/all.sh"
+        bindsym --to-code $mod+Ctrl+Shift+l exec "bash -c ~/.local/share/light-mode.d/all.sh"
+    
+    # Misc
+        bindsym --to-code $mod+Ctrl+Shift+delete exec $lock_cmd
+
+        # easy navigate up and down in unfocused window
+        bindsym --to-code Ctrl+$mod+k exec "swaymsg focus next;wtype -k Up;swaymsg focus prev"
+        bindsym --to-code Ctrl+$mod+j exec "swaymsg focus next;wtype -k Down;swaymsg focus prev"
+
+        # emoji
+        bindsym --to-code $mod+i exec "/usr/share/sway/scripts/menuunicode.sh"
+
+# mode: hotkeygrab
+set $mode_hotkeygrab Hotkey grab: Mod+Shift+z to exit
+bindsym --to-code $mod+Shift+z mode "$mode_hotkeygrab"
+mode "$mode_hotkeygrab" {
+  # back to normal: mod+Shift+z
+  bindsym --to-code $mod+Shift+z mode "default"
+}
+
+
+        # swayr
+#TODO: improve alttab
+        # bindsym $mod+Space exec env RUST_BACKTRACE=1 \
+        #     swayr switch-window >> /tmp/swayr.log 2>&1
+
+        bindsym $mod+Delete exec env RUST_BACKTRACE=1 \
+            swayr quit-window >> /tmp/swayr.log 2>&1
+
+        bindsym --inhibited $mod+Tab exec env RUST_BACKTRACE=1 \
+            swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
+
+        bindsym $mod+period exec env RUST_BACKTRACE=1 \
+            swayr next-window all-workspaces >> /tmp/swayr.log 2>&2
+
+        bindsym $mod+comma exec env RUST_BACKTRACE=1 \
+            swayr prev-window all-workspaces >> /tmp/swayr.log 2>&2
+
+        # bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \
+        #     swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1
+
+        # bindsym $mod+c exec env RUST_BACKTRACE=1 \
+        #     swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
+        #
+        # bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
+        #     swayr execute-swayr-command >> /tmp/swayr.log 2>&1
+
+
+
+### title config
+    for_window [title="."] title_format "%title" 
+
+### floating & border config for windows
+    # TODO: tidy pls
+    # TODO: we need smarter workaround
+    for_window {
+        [window_role="(pop-up|bubble|dialog|about|About|task_dialog)"] floating enable
+        [window_role="browser"] border pixel
+        [title="Preferences$"] floating enable
+        [app_id="floating"] floating enable
+        [app_id="polkit"] floating enable
+        [class="vlc"] floating enable
+        [class="floating"] floating enable
+        [title="Authy"] floating enable
+        [app_id="pavucontrol"] floating enable
+        [title="Picture-in-Picture"] floating enable,border pixel
+        [app_id="lxqt-archiver"] floating enable
+        [title="File Properties"] floating enable
+        [app_id="firefox"] border pixel
+        [app_id="librewolf"] border pixel
+        [class="Gufw.py"] floating enable
+        [app_id="chromium"] border pixel
+        [app_id="org.qutebrowser.qutebrowser"] border pixel
+        [app_id="gnome-terminal-server"] border pixel
+        [app_id="Alacritty"] border pixel
+        [app_id="konsole"] border pixel
+        [app_id="nm-connection-editor"] floating enable
+        [instance="xeyes"] floating enable
+        [instance="qpaeq"] floating enable
+        [app_id="qalculate-gtk"] floating enable
+        [app_id="pulseaudio-equalizer-gtk"] floating enable 
+        [class="DesktopEditors"] border pixel
+        [app_id="evince"] border pixel
+        [app_id="org.kde.okular"] border pixel
+        [app_id="grsync"] floating enable
+        [title="floating_terminal"] resize set width 1400 ,resize set height 750,move position 250 0,move up 30,move scratchpad,scratchpad show
+        [title="Password Required - Mozilla Firefox"] floation enable
+        [title="Information — Dolphin"] floating enable
+        [title="Copying — Dolphin"] floating enable
+        [title="Unlock Database - KeePassXC"] floating enable
+    
+        # enabling icon for some windows (TODO: idk there is better workaround or not)
+        [app_id="firefox"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
+        [app_id="librewolf"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
+        [app_id="Alacritty"] title_format "<span foreground='#00FF00'><tt></tt></span> %title"
+        [class="TelegramDesktop"] title_format "<span foreground='#84b3ff'><tt></tt></span> %title"
+    
+        # move these apps to their appropriate workspace
+        [class="TelegramDesktop"] move container to workspace 3, focus
+        [class="discord"] move container to workspace 3, focus
+        [app_id="telegramdesktop"] move container to workspace 3, focus
+        [app_id="(?i)(?:blueman-manager|azote|gnome-disks)"] floating enable
+        [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
+        [app_id="(?i)(?:firefox|chromium)"] border none
+        [title="(?i)(?:copying|deleting|moving)"] floating enable
+
+    }
+
+    popup_during_fullscreen smart
+    smart_borders on
+    smart_gaps on
+
+### BAR
+    # config for waybar autohide 
+    # TODO: we need a smarter autohide (dodge active)
+    #bar {
+    #    swaybar_command waybar
+    #    position bottom
+    #    hidden_state hide
+    #    mode hide
+    #    modifier Mod1
+    #}
+    exec_always --no-startup-id pgrep waybar >/dev/null && : || (waybar) 
+
+
+### Notifications daemon
+    # exec --no-startup-id mako 
+    exec swaync -s /home/erfch/.config/swaync/preset-0.css
+
+
+### applets/daemons
+    exec --no-startup-id nm-applet --indicator  
+    exec --no-startup-id blueman-applet 
+    exec --no-startup-id kdeconnect-indicator 
+    exec --no-startup-id keepassxc 
+    exec --no-startup-id firewall-applet
+    exec --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
+    exec --no-startup-id arch-audit-gtk
+    exec --no-startup-id playerctld
+    #exec --no-startup-id /bin/sh -c "pkill -15 opensnitch-ui; opensnitch-ui"
+
+    # polkit
+    exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 
+    
+    # gnome-keyring
+    # exec --no-startup-id gnome-keyring-daemon --start --components=secrets 
+    # exec --no-startup-id gnome-keyring-daemon --start --components=ssh 
+    # exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11 
+
+    exec --no-startup-id swaykbdd 
+    exec --no-startup-id wl-paste -t text --watch clipman store --max-items=200 --no-persist 
+    # exec --no-startup-id libinput-gestures-setup restart 
+    exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+    exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov
+    exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
+    #exec bash ~/.config/sway/usr/share/sway/scripts/wob.sh "$accent-colorFF" "$background-colorFF"
+
+    # night shift
+    # exec --no-startup-id gammastep-indicator  
+    exec --no-startup-id wlsunset -l 36.2 -L 59.6
+    exec_always --no-startup-id workstyle &> /tmp/workstyle.log
+
+
+### Misc
+#exec_always {
+#  gsettings set org.gnome.desktop.interface gtk-theme "$gtk-theme"
+#  gsettings set org.gnome.desktop.interface icon-theme "$icon-theme"
+#  gsettings set org.gnome.desktop.interface cursor-theme "$cursor-theme"
+##  gsettings set org.gnome.desktop.interface font-name "$gui-font"
+#}
+
+### TODO:
+    # switch between windows easier (last used window)
+    # screen cast
+    # move permenant and default settings into a new config file, this will make our config clean
