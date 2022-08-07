@@ -171,6 +171,8 @@ seat * shortcuts_inhibitor enable
         bindsym --to-code $mod+f fullscreen
     
         bindsym $mod+Shift+space floating toggle
+
+        bindsym $mod+Shift+s sticky toggle
     
         # Swap focus between the tiling area and the floating area
         bindsym $mod+space focus mode_toggle
