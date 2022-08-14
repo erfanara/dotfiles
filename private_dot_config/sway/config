@@ -9,7 +9,7 @@ seat * shortcuts_inhibitor enable
         $mod Mod4
     
         # Your preferred terminal emulator
-        $term_alter konsole 
+        $term_alter gnome-terminal 
         $term footclient
         
         # on the original workspace that the command was run on.
