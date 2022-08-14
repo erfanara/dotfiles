@@ -21,6 +21,9 @@ else
     export BROWSER=links
 fi
 
+# Zephyr zstyles
+zstyle ':zephyr:*:*' use-xdg-basedirs 'yes'
+
 #antidote
 #########################################
 #########################################
@@ -30,6 +33,7 @@ if ! [[ -e ${ZDOTDIR:-~}/.antidote ]]; then
 fi
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
+source ~/.zsh_plugins.zsh
 
 # ohmyzsh path
 ZSH=$(antidote path ohmyzsh/ohmyzsh)
@@ -102,9 +106,20 @@ TRAPUSR1() {
     $theme_sh $THEME
 }
 TRAPUSR2() {
-    export THEME=one-dark
+    export THEME=dracula
     $theme_sh $THEME
 }
+
+### less
+
+# set default less options
+export LESS="${LESS:--g -i -M -R -S -w -z-4}"
+
+# set the less input preprocessor
+if [[ -z "$LESSOPEN" ]] && (( $#commands[(i)lesspipe(|.sh)] )); then
+  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+fi
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

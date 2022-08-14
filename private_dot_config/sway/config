@@ -222,8 +222,8 @@ seat * shortcuts_inhibitor enable
     
         # Start your launcher
         bindsym --to-code $mod+d exec $menu
-        bindsym --to-code $mod+c exec clipman pick -t $menu
-    
+        bindsym --to-code $mod+c exec clipman pick -t STDOUT | fuzzel -d -w 40 -l 10 -b 222222ff -t 8AFF43ff | wl-copy 
+        
     # Brightness/Audio
         #brightness	
         bindsym --locked XF86MonBrightnessDown exec brightnessctl set 2%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
