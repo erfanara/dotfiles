@@ -14,7 +14,7 @@ seat * shortcuts_inhibitor enable
         
         # on the original workspace that the command was run on.
 #TODO: original workspace that command was run
-        $menu "wofi" 
+        $menu "fuzzel --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e'" 
         
         # $file_manager "alacritty -e nnn"
         $file_manager gnome-terminal -e "zsh -c 'source .zshrc;nnn'"
@@ -260,8 +260,8 @@ seat * shortcuts_inhibitor enable
         bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
 
     # Theme toggle
-        bindsym --to-code $mod+Ctrl+Shift+d exec "bash -c ~/.local/share/dark-mode.d/all.sh"
-        bindsym --to-code $mod+Ctrl+Shift+l exec "bash -c ~/.local/share/light-mode.d/all.sh"
+        bindsym --to-code $mod+Ctrl+Shift+d exec "bash -c ~/.local/share/dark-mode.d/all"
+        bindsym --to-code $mod+Ctrl+Shift+l exec "bash -c ~/.local/share/light-mode.d/all"
     
     # Misc
         bindsym --to-code $mod+Ctrl+Shift+delete exec $lock_cmd
