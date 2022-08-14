@@ -1,0 +1,6 @@
+#!/bin/bash
+cd ~/.local/share/light-mode.d/ || exit
+for file in *.sh
+do
+  ./"$file";
+done

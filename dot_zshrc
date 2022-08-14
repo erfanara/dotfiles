@@ -216,3 +216,18 @@ export NNN_PLUG='f:finder;o:fzopen;d:dragdrop;x:xdgdefault;i:imgview;z:fzplug'
 export NNN_SEL='/tmp/nnn.sel'
 export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
+
+
+# Theme
+# trap 'source ~/.debug_vars' DEBUG
+theme_sh=/usr/bin/theme.sh
+THEME=one-light
+$theme_sh $THEME
+TRAPUSR1() {
+    export THEME=one-light
+    $theme_sh $THEME
+}
+TRAPUSR2() {
+    export THEME=one-dark
+    $theme_sh $THEME
+}
