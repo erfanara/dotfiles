@@ -10,7 +10,7 @@ seat * shortcuts_inhibitor enable
     
         # Your preferred terminal emulator
         $term_alter konsole 
-        $term alacritty
+        $term footclient
         
         # on the original workspace that the command was run on.
 #TODO: original workspace that command was run
@@ -320,6 +320,7 @@ mode "$mode_hotkeygrab" {
         [window_role="(pop-up|bubble|dialog|about|About|task_dialog)"] floating enable
         [window_role="browser"] border pixel
         [title="Preferences$"] floating enable
+        [title="TelegramDesktop"] floating enable
         [app_id="floating"] floating enable
         [app_id="polkit"] floating enable
         [class="vlc"] floating enable
@@ -373,6 +374,9 @@ mode "$mode_hotkeygrab" {
     smart_borders on
     smart_gaps on
 
+
+    exec --no-startup-id foot --server
+
 ### BAR
     # config for waybar autohide 
     # TODO: we need a smarter autohide (dodge active)
@@ -388,7 +392,7 @@ mode "$mode_hotkeygrab" {
 
 ### Notifications daemon
     # exec --no-startup-id mako 
-    exec swaync -s /home/erfch/.config/swaync/preset-0.css
+    exec --no-startup-id swaync -s /home/erfch/.config/swaync/preset-0.css
 
 
 ### applets/daemons
