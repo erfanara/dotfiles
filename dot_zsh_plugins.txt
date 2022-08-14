@@ -1,0 +1,35 @@
+# core
+zsh-users/zsh-completions
+mattmc3/zephyr path:plugins/completions
+
+# prompt
+romkatv/powerlevel10k kind:fpath
+
+# ohmyzsh
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/heroku
+#ohmyzsh/ohmyzsh path:plugins/lein
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+#ohmyzsh/ohmyzsh path:plugins/adb
+ohmyzsh/ohmyzsh path:plugins/colorize
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/dircycle
+ohmyzsh/ohmyzsh path:plugins/bgnotify 
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/z
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+ohmyzsh/ohmyzsh path:plugins/common-aliases
+ohmyzsh/ohmyzsh path:plugins/mvn
+
+# regular 
+joshskidmore/zsh-fzf-history-search
+olets/zsh-window-title
+
+# deferred plugins
+olets/zsh-abbr kind:defer
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+# final
+#zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions

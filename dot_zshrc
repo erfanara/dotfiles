@@ -1,11 +1,13 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export local bins folder 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
-
- #Path to your oh-my-zsh installation.
-export ZSH="/home/erfch/.oh-my-zsh"
 
 # Path of XDG_CONFIG_HOME (ADDED BY USER)
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -18,139 +20,22 @@ if [ -n "$DISPLAY" ]; then
 else 
     export BROWSER=links
 fi
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="linuxonly"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-#plugins=(
-#  git
-#  adb
-#  colorize
-#  docker
-#  dircycle
-#  bgnotify
-#  command-not-found
-#  extract 
-#  z
-#  zsh-autosuggestions  
-#  colored-man-pages
-#  zsh-syntax-highlighting
-#)
-
-
-
+#antidote
 #########################################
 #########################################
-#antigen
+# clone antidote if necessary
+if ! [[ -e ${ZDOTDIR:-~}/.antidote ]]; then
+  git clone https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+fi
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
 
-source ~/.antigen/antigen.zsh
-
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle heroku
-antigen bundle lein
-antigen bundle command-not-found
-antigen bundle adb
-antigen bundle colorize
-antigen bundle docker
-antigen bundle dircycle
-antigen bundle bgnotify 
-antigen bundle extract
-antigen bundle z
-antigen bundle colored-man-pages
-antigen bundle common-aliases
-antigen bundle mvn
-
-# zsh-users
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions
-
-# Custom plugins
-#antigen bundle /home/erfch/.antigen/bundles/custom/
-
-# Cht.sh
-#(WE HAVE PROBLEM WITH THIS CHT.SH COMPLETIONS)
-
-# Load the theme.
-antigen theme crcandy 
-
-# Tell Antigen that you're done.
-antigen apply
+# ohmyzsh path
+ZSH=$(antidote path ohmyzsh/ohmyzsh)
+autoload -Uz promptinit && promptinit && prompt powerlevel10k
 ####################################
 ####################################
-
-
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -160,17 +45,7 @@ else
  export VISUAL='nvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# aliases
 alias op0ns="sudo ip netns exec ovpn0 "
 alias en-en="trans en:en --speak"
 alias en-fa="trans en:fa --speak"
@@ -179,7 +54,7 @@ alias en-en_shell="trans en:en --speak --shell"
 alias en-fa_shell="trans en:fa --speak --shell"
 alias fa-en_shell="trans fa:en --shell" 
 
-#nnn config
+# nnn config
 [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 #cd on exit feature
 n()
@@ -210,7 +85,6 @@ n()
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
-
 export NNN_OPTS="adiUerx"
 export NNN_PLUG='f:finder;o:fzopen;d:dragdrop;x:xdgdefault;i:imgview;z:fzplug'
 export NNN_SEL='/tmp/nnn.sel'
@@ -231,3 +105,6 @@ TRAPUSR2() {
     export THEME=one-dark
     $theme_sh $THEME
 }
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
