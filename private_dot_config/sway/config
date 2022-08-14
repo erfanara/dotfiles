@@ -337,6 +337,7 @@ mode "$mode_hotkeygrab" {
         [app_id="org.qutebrowser.qutebrowser"] border pixel
         [app_id="gnome-terminal-server"] border pixel
         [app_id="Alacritty"] border pixel
+        [app_id="foot"] border pixel
         [app_id="konsole"] border pixel
         [app_id="nm-connection-editor"] floating enable
         [instance="xeyes"] floating enable
