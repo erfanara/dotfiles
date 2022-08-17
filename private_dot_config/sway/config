@@ -276,7 +276,7 @@ seat * shortcuts_inhibitor enable
         bindsym --release Ctrl+Print exec "/usr/share/sway-git/scripts/grimshot save screen - | swappy -f -"
     
     # Notifications
-        bindsym --to-code $mod+n exec "swaync --hide-latest"
+        bindsym --to-code $mod+n exec "swaync-client --hide-latest"
         bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
 
     # Theme toggle
