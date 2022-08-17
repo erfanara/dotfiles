@@ -96,7 +96,27 @@ seat * shortcuts_inhibitor enable
     # Basics:
         bindsym --to-code $mod+Shift+q kill
         bindsym --to-code $mod+Shift+c reload
-        bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+        # bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+        bindsym --to-code $mod+Shift+e exec waylogout \
+        --hide-cancel \
+        --screenshots \
+        --effect-blur=7x5 \
+        --indicator-thickness=20 \
+        --ring-color=888888aa \
+        --inside-color=88888866 \
+        --text-color=eaeaeaaa \
+        --line-color=00000000 \
+        --ring-selection-color=33cc33aa \
+        --inside-selection-color=33cc3366 \
+        --text-selection-color=eaeaeaaa \
+        --line-selection-color=00000000 \
+        --lock-command="loginctl lock-session ${XDG_SESSION_ID-}" \
+        --logout-command="loginctl terminate-session ${XDG_SESSION_ID-}" \
+        --suspend-command="systemctl suspend" \
+        --hibernate-command="systemctl hibernate" \
+        --poweroff-command="systemctl poweroff" \
+        --reboot-command="systemctl reboot" \
+        --selection-label
     
     # Moving around:
         bindsym --to-code $mod+h focus left
@@ -222,7 +242,8 @@ seat * shortcuts_inhibitor enable
     
         # Start your launcher
         bindsym --to-code $mod+d exec $menu
-        bindsym --to-code $mod+c exec clipman pick -t STDOUT | fuzzel -d -w 40 -l 10 -b 222222ff -t 8AFF43ff | wl-copy 
+        # bindsym --to-code $mod+c exec clipman pick -t STDOUT | fuzzel -d -w 40 -l 10 -b 222222ff -t 8AFF43ff | wl-copy 
+        bindsym --to-code $mod+c exec clipman pick -t dmenu 
         
     # Brightness/Audio
         #brightness	
@@ -255,8 +276,7 @@ seat * shortcuts_inhibitor enable
         bindsym --release Ctrl+Print exec "/usr/share/sway-git/scripts/grimshot save screen - | swappy -f -"
     
     # Notifications
-        # bindsym --to-code $mod+n exec "makoctl dismiss"
-        # bindsym --to-code $mod+Shift+n exec "makoctl dismiss -a"
+        bindsym --to-code $mod+n exec "swaync --hide-latest"
         bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
 
     # Theme toggle
