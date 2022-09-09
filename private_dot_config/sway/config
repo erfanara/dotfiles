@@ -347,7 +347,7 @@ mode "$mode_hotkeygrab" {
         [class="floating"] floating enable
         [title="Authy"] floating enable
         [app_id="pavucontrol"] floating enable
-        [title="Picture-in-Picture"] floating enable,border pixel
+        [title="Picture-in-Picture"] floating enable,border pixel,sticky enable
         [app_id="lxqt-archiver"] floating enable
         [title="File Properties"] floating enable
         [app_id="firefox"] border pixel
