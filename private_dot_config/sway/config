@@ -9,7 +9,7 @@ seat * shortcuts_inhibitor enable
         $mod Mod4
     
         # Your preferred terminal emulator
-        $term_alter gnome-terminal 
+        $term_alter gnome-terminal --profile=fira
         $term footclient
         
         # on the original workspace that the command was run on.
@@ -17,7 +17,7 @@ seat * shortcuts_inhibitor enable
         $menu "fuzzel --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e'" 
         
         # $file_manager "alacritty -e nnn"
-        $file_manager gnome-terminal -e "zsh -c 'source .zshrc;nnn'"
+        $file_manager gnome-terminal --profile=nnn -e "zsh -c 'source .zshrc;nnn'"
         
         # calculator
         $calc qalculate-gtk

@@ -1,6 +1,6 @@
 # core
 zsh-users/zsh-completions
-mattmc3/zephyr path:plugins/completions
+mattmc3/zephyr
 
 # prompt
 romkatv/powerlevel10k kind:fpath
@@ -9,9 +9,9 @@ romkatv/powerlevel10k kind:fpath
 ohmyzsh/ohmyzsh path:lib
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/heroku
-#ohmyzsh/ohmyzsh path:plugins/lein
+#ohmyzsh/ohmyzsh path:plugins/lein/_lein
 ohmyzsh/ohmyzsh path:plugins/command-not-found
-#ohmyzsh/ohmyzsh path:plugins/adb
+#ohmyzsh/ohmyzsh path:plugins/adb/_adb
 ohmyzsh/ohmyzsh path:plugins/colorize
 ohmyzsh/ohmyzsh path:plugins/docker
 ohmyzsh/ohmyzsh path:plugins/dircycle
@@ -31,5 +31,4 @@ olets/zsh-abbr kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
 # final
-#zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions

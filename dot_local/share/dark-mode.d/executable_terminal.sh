@@ -1,2 +1,2 @@
-sed -i 's/^THEME=one-light$/THEME=one-dark/' ~/.zshrc
+sed -i 's/^THEME=one-light$/THEME=dracula/' ~/.zshrc
 pkill -USR2 zsh
