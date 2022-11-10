@@ -25,6 +25,7 @@ ohmyzsh/ohmyzsh path:plugins/mvn
 # regular 
 joshskidmore/zsh-fzf-history-search
 olets/zsh-window-title
+MichaelAquilina/zsh-you-should-use
 
 # deferred plugins
 olets/zsh-abbr kind:defer

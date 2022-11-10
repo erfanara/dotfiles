@@ -14,7 +14,9 @@ seat * shortcuts_inhibitor enable
         
         # on the original workspace that the command was run on.
 #TODO: original workspace that command was run
-        $menu "fuzzel --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e'" 
+        # $menu "fuzzel --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e'" 
+        # $menu "fuzzel -I --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e' --log-level=none" 
+        $menu  wofi --show=drun -I
         
         # $file_manager "alacritty -e nnn"
         $file_manager gnome-terminal --profile=nnn -e "zsh -c 'source .zshrc;nnn'"
@@ -35,7 +37,7 @@ seat * shortcuts_inhibitor enable
 
 ### Output configuration
     # Default wallpaper
-    output * bg ~/.local/share/wallpapers/wallhaven-e7rprl.png stretch
+    output * bg ~/.local/share/wallpapers/demon_slayer/18.png stretch
     # random wallpaper on $mod+y
     bindsym --to-code $mod+y exec setrandom -r ~/.local/share/wallpapers  
 
@@ -243,7 +245,7 @@ seat * shortcuts_inhibitor enable
         # Start your launcher
         bindsym --to-code $mod+d exec $menu
         # bindsym --to-code $mod+c exec clipman pick -t STDOUT | fuzzel -d -w 40 -l 10 -b 222222ff -t 8AFF43ff | wl-copy 
-        bindsym --to-code $mod+c exec clipman pick -t dmenu 
+        bindsym --to-code $mod+c exec clipman pick -t wofi 
         
     # Brightness/Audio
         #brightness	
@@ -340,7 +342,7 @@ mode "$mode_hotkeygrab" {
         [window_role="(pop-up|bubble|dialog|about|About|task_dialog)"] floating enable
         [window_role="browser"] border pixel
         [title="Preferences$"] floating enable
-        [title="TelegramDesktop"] floating enable
+        [title="TelegramDesktop"] floating enable,sticky enable
         [app_id="floating"] floating enable
         [app_id="polkit"] floating enable
         [class="vlc"] floating enable
@@ -350,7 +352,7 @@ mode "$mode_hotkeygrab" {
         [title="Picture-in-Picture"] floating enable,border pixel,sticky enable
         [app_id="lxqt-archiver"] floating enable
         [title="File Properties"] floating enable
-        [app_id="firefox"] border pixel
+        [app_id="LibreWolf"] border pixel
         [app_id="librewolf"] border pixel
         [class="Gufw.py"] floating enable
         [app_id="chromium"] border pixel
@@ -376,7 +378,7 @@ mode "$mode_hotkeygrab" {
     
         # enabling icon for some windows (TODO: idk there is better workaround or not)
         [app_id="firefox"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
-        [app_id="librewolf"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
+        [app_id="LibreWolf"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
         [app_id="Alacritty"] title_format "<span foreground='#00FF00'><tt></tt></span> %title"
         [class="TelegramDesktop"] title_format "<span foreground='#84b3ff'><tt></tt></span> %title"
     
@@ -445,7 +447,7 @@ mode "$mode_hotkeygrab" {
 
     # night shift
     # exec --no-startup-id gammastep-indicator  
-    exec --no-startup-id wlsunset -l 36.2 -L 59.6
+    exec --no-startup-id wlsunset -l 36.2 -L 59.6 -t 2600
     exec_always --no-startup-id workstyle &> /tmp/workstyle.log
 
 
