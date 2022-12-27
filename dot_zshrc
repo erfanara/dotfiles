@@ -60,6 +60,11 @@ alias en-en_shell="trans en:en --speak --shell"
 alias en-fa_shell="trans en:fa --speak --shell"
 alias fa-en_shell="trans fa:en --shell" 
 
+# use ip from iproute2 with color support
+if ip -color=auto addr show dev lo >/dev/null 2>&1; then
+    alias ip='command ip -color=auto'
+fi
+
 # nnn config
 [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 #cd on exit feature
@@ -113,7 +118,6 @@ TRAPUSR2() {
 }
 
 ### less
-
 # set default less options
 export LESS="${LESS:--g -i -M -R -S -w -z-4}"
 

@@ -10,13 +10,15 @@ seat * shortcuts_inhibitor enable
     
         # Your preferred terminal emulator
         $term_alter gnome-terminal --profile=fira
+        # $term_alter footclient
         $term footclient
+        # $term gnome-terminal --profile=fira
         
         # on the original workspace that the command was run on.
 #TODO: original workspace that command was run
         # $menu "fuzzel --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e'" 
         # $menu "fuzzel -I --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e' --log-level=none" 
-        $menu  wofi --show=drun -I
+        $menu  wofi --show=drun -Ii 
         
         # $file_manager "alacritty -e nnn"
         $file_manager gnome-terminal --profile=nnn -e "zsh -c 'source .zshrc;nnn'"
@@ -37,7 +39,7 @@ seat * shortcuts_inhibitor enable
 
 ### Output configuration
     # Default wallpaper
-    output * bg ~/.local/share/wallpapers/demon_slayer/18.png stretch
+    output * bg ~/.local/share/wallpapers/wallhaven-6koj27.jpg stretch
     # random wallpaper on $mod+y
     bindsym --to-code $mod+y exec setrandom -r ~/.local/share/wallpapers  
 
@@ -380,12 +382,14 @@ mode "$mode_hotkeygrab" {
         [app_id="firefox"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
         [app_id="LibreWolf"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
         [app_id="Alacritty"] title_format "<span foreground='#00FF00'><tt></tt></span> %title"
-        [class="TelegramDesktop"] title_format "<span foreground='#84b3ff'><tt></tt></span> %title"
+        [app_id="gnome-terminal-server"] title_format "<span foreground='#00FF00'><tt></tt></span> %title"
+        [app_id="foot"] title_format "<span foreground='#00FF00'><tt></tt></span> %title"
+        [app_id="org.telegram.desktop"] title_format "<span foreground='#84b3ff'><tt></tt></span> %title"
     
         # move these apps to their appropriate workspace
-        [class="TelegramDesktop"] move container to workspace 3, focus
+        [app_id="org.telegram.desktop"] move container to workspace 3, focus
         [class="discord"] move container to workspace 3, focus
-        [app_id="telegramdesktop"] move container to workspace 3, focus
+        [app_id="org.telegram.desktop"] move container to workspace 3, focus
         [app_id="(?i)(?:blueman-manager|azote|gnome-disks)"] floating enable
         [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
         [app_id="(?i)(?:firefox|chromium)"] border none
