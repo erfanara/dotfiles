@@ -36,7 +36,7 @@ antidote load
 
 # ohmyzsh path
 ZSH=$(antidote path ohmyzsh/ohmyzsh)
-autoload -Uz promptinit && promptinit && prompt powerlevel10k
+# autoload -Uz promptinit && promptinit #&& prompt powerlevel10k
 ####################################
 ####################################
 
@@ -133,3 +133,4 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+autoload -Uz promptinit && promptinit && prompt powerlevel10k
