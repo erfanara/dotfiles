@@ -106,15 +106,17 @@ export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|l
 # Theme
 # trap 'source ~/.debug_vars' DEBUG
 theme_sh=/usr/bin/theme.sh
-THEME=one-light
+THEME=gruvbox-light-hard
 $theme_sh $THEME
 TRAPUSR1() {
-    export THEME=one-light
+    export THEME=gruvbox-light-hard
     $theme_sh $THEME
+    export BAT_THEME="GitHub"
 }
 TRAPUSR2() {
-    export THEME=dracula
+    export THEME=windows-highcontrast
     $theme_sh $THEME
+    export BAT_THEME="Dracula"
 }
 
 ### less
@@ -126,11 +128,12 @@ if [[ -z "$LESSOPEN" ]] && (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
+
 # Golang vars
 # export GOROOT=/usr/local/go
 # export GOPATH=$HOME/go
 # export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 autoload -Uz promptinit && promptinit && prompt powerlevel10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

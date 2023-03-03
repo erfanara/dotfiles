@@ -1,0 +1,118 @@
+# Default config for tofi
+#
+# Copy this file to ~/.config/tofi/config and get customising!
+#
+# A complete reference of available options can be found in `man 5 tofi`.
+
+# Font
+font = Fredoka One
+font-size = 20
+
+# Window Style
+horizontal = true
+anchor = top
+width = 100%
+height = 48
+
+outline-width = 0
+border-width = 0
+min-input-width = 120
+result-spacing = 30
+padding-top = 8
+padding-bottom = 0
+padding-left = 20
+padding-right = 0
+
+# Text style
+prompt-text = "run:"
+prompt-padding = 30
+
+background-color = #fff0dc
+text-color = #4280a0
+
+prompt-background = #eebab1
+prompt-background-padding = 4, 10
+prompt-background-corner-radius = 12
+
+input-color = #e1666a
+input-background = #f4cf42
+input-background-padding = 4, 10
+input-background-corner-radius = 12
+
+alternate-result-background = #b8daf3
+alternate-result-background-padding = 4, 10
+alternate-result-background-corner-radius = 12
+
+selection-color = #f0d2af
+selection-background = #da5d64
+selection-background-padding = 4, 10
+selection-background-corner-radius = 12
+selection-match-color = #fff
+
+clip-to-padding = false
+
+#
+### Behaviour
+#
+	# Hide the mouse cursor.
+	hide-cursor = false
+
+	# Show a text cursor in the input field.
+	text-cursor = false
+
+	# Sort results by number of usages in run and drun modes.
+	history = true
+
+	# Specify an alternate file to read and store history information
+	# from / to. This shouldn't normally be needed, and is intended to
+	# facilitate the creation of custom modes.
+	# history-file = /path/to/histfile
+
+	# Use fuzzy matching for searches.
+	fuzzy-match = true
+
+	# If true, require a match to allow a selection to be made. If false,
+	# making a selection with no matches will print input to stdout.
+	# In drun mode, this is always true.
+	require-match = true
+
+	# If true, typed input will be hidden, and what is displayed (if
+	# anything) is determined by the hidden-character option.
+	hide-input = false
+
+	# Replace displayed input characters with a character. If the empty
+	# string is given, input will be completely hidden.
+	# This option only has an effect when hide-input is set to true.
+	hidden-character = "*"
+
+	# If true, directly launch applications on selection when in drun mode.
+	# Otherwise, just print the command line to stdout.
+	drun-launch = false
+
+	# The terminal to run terminal programs in when in drun mode.
+	# This option has no effect if drun-launch is set to true.
+	# Defaults to the value of the TERMINAL environment variable.
+	# terminal = foot
+
+	# Delay keyboard initialisation until after the first draw to screen.
+	# This option is experimental, and will cause tofi to miss keypresses
+	# for a short time after launch. The only reason to use this option is
+	# performance on slow systems.
+	late-keyboard-init = false
+
+	# If true, allow multiple simultaneous processes.
+	# If false, create a lock file on startup to prevent multiple instances
+	# from running simultaneously.
+	multi-instance = false
+
+	# Assume input is plain ASCII, and disable some Unicode handling
+	# functions. This is faster, but means e.g. a search for "e" will not
+	# match "é".
+	ascii-input = false
+
+#
+### Inclusion
+#
+	# Configs can be split between multiple files, and then included
+	# within each other.
+	# include = /path/to/config

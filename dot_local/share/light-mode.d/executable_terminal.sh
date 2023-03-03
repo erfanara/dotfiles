@@ -1,2 +1,2 @@
-sed -i 's/^THEME=dracula$/THEME=one-light/' ~/.zshrc;
+sed -i 's/^THEME=windows-highcontrast$/THEME=gruvbox-light-hard/' ~/.zshrc;
 pkill -USR1 zsh;

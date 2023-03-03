@@ -18,7 +18,8 @@ seat * shortcuts_inhibitor enable
 #TODO: original workspace that command was run
         # $menu "fuzzel --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e'" 
         # $menu "fuzzel -I --show-actions -w 40 -l 10 -i Adwaita -b 222222ff -t 8AFF43ff --launch-prefix='swaymsg exec --' -T 'gnome-terminal -e' --log-level=none" 
-        $menu  wofi --show=drun -Ii 
+        # $menu  wofi --show=drun -Ii 
+        $menu tofi-drun | xargs swaymsg exec -- 
         
         # $file_manager "alacritty -e nnn"
         $file_manager gnome-terminal --profile=nnn -e "zsh -c 'source .zshrc;nnn'"
@@ -287,7 +288,7 @@ seat * shortcuts_inhibitor enable
         bindsym --to-code Ctrl+$mod+j exec "swaymsg focus next;wtype -k Down;swaymsg focus prev"
 
         # emoji
-        bindsym --to-code $mod+i exec rofimoji --selector wofi
+        bindsym --to-code $mod+i exec rofimoji
 
 # mode: hotkeygrab
 set $mode_hotkeygrab Hotkey grab: Mod+Shift+z to exit
@@ -369,6 +370,7 @@ mode "$mode_hotkeygrab" {
         [title="Information — Dolphin"] floating enable
         [title="Copying — Dolphin"] floating enable
         [title="Unlock Database - KeePassXC"] floating enable
+        # [app_id="com.nextcloud.desktopclient.nextcloud"] floating enable
     
         # enabling icon for some windows (TODO: idk there is better workaround or not)
         [app_id="firefox"] title_format "<span foreground='#FF6611'><tt></tt></span> %title"
@@ -394,7 +396,7 @@ mode "$mode_hotkeygrab" {
     smart_gaps on
 
 
-    exec --no-startup-id foot --server
+    exec_always --no-startup-id pgrep foot >/dev/null && : || (foot --server)
 
 ### BAR
     # config for waybar autohide 
@@ -445,6 +447,8 @@ mode "$mode_hotkeygrab" {
     # exec --no-startup-id gammastep-indicator  
     exec --no-startup-id wlsunset -l 36.2 -L 59.6 -t 2600
     exec_always --no-startup-id workstyle &> /tmp/workstyle.log
+
+    exec --no-startup-id /usr/lib/pam_kwallet_init
 
 
 ### Misc
