@@ -449,6 +449,10 @@ mode "$mode_hotkeygrab" {
     exec_always --no-startup-id workstyle &> /tmp/workstyle.log
 
     exec --no-startup-id /usr/lib/pam_kwallet_init
+    
+    exec --no-startup-id /usr/lib/nekoray/nekoray -tray -appdata
+
+    exec --no-startup-id nextcloud
 
 
 ### Misc

@@ -65,6 +65,9 @@ if ip -color=auto addr show dev lo >/dev/null 2>&1; then
     alias ip='command ip -color=auto'
 fi
 
+# completions
+source <(kind completion zsh)
+
 # nnn config
 [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 #cd on exit feature
@@ -106,7 +109,7 @@ export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|l
 # Theme
 # trap 'source ~/.debug_vars' DEBUG
 theme_sh=/usr/bin/theme.sh
-THEME=gruvbox-light-hard
+THEME=windows-highcontrast
 $theme_sh $THEME
 TRAPUSR1() {
     export THEME=gruvbox-light-hard
@@ -136,4 +139,4 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 autoload -Uz promptinit && promptinit && prompt powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
