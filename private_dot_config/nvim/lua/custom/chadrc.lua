@@ -3,7 +3,7 @@ local M = {}
 M.plugins = require "custom.plugins"
 
 M.ui = {
-  theme = "gruvbox",
+  theme = "one_light",
   theme_toggle = { "one_light", "gruvbox" },
 
   hl_add = require("custom.highlights").new_hlgroups,

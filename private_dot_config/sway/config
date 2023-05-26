@@ -240,7 +240,7 @@ seat * shortcuts_inhibitor enable
         # Start your launcher
         bindsym --to-code $mod+d exec $menu
         # bindsym --to-code $mod+c exec clipman pick -t STDOUT | fuzzel -d -w 40 -l 10 -b 222222ff -t 8AFF43ff | wl-copy 
-        bindsym --to-code $mod+c exec clipman pick -t wofi 
+        bindsym --to-code $mod+c exec clipman pick -t CUSTOM -T 'tofi' 
         
     # Brightness/Audio
         #brightness	
@@ -288,7 +288,7 @@ seat * shortcuts_inhibitor enable
         bindsym --to-code Ctrl+$mod+j exec "swaymsg focus next;wtype -k Down;swaymsg focus prev"
 
         # emoji
-        bindsym --to-code $mod+i exec rofimoji
+        bindsym --to-code $mod+i exec rofimoji --action type copy
 
 # mode: hotkeygrab
 set $mode_hotkeygrab Hotkey grab: Mod+Shift+z to exit
@@ -370,6 +370,7 @@ mode "$mode_hotkeygrab" {
         [title="Information — Dolphin"] floating enable
         [title="Copying — Dolphin"] floating enable
         [title="Unlock Database - KeePassXC"] floating enable
+        [title="Extension: (NoScript) - NoScript XSS Warning — LibreWolf"] floating enable
         # [app_id="com.nextcloud.desktopclient.nextcloud"] floating enable
     
         # enabling icon for some windows (TODO: idk there is better workaround or not)

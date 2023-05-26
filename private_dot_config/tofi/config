@@ -57,9 +57,6 @@ clip-to-padding = false
 	# Hide the mouse cursor.
 	hide-cursor = false
 
-	# Show a text cursor in the input field.
-	text-cursor = false
-
 	# Sort results by number of usages in run and drun modes.
 	history = true
 
