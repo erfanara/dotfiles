@@ -1,33 +1,18 @@
+---@type MappingsTable
 local M = {}
 
 M.general = {
   n = {
-    [";"] = { ":", "command mode", opts = { nowait = true } },
-  },
-
-  i = {
-    ["jk"] = { "<ESC>", "escape vim" },
-  },
-}
-
-M.venn = {
-  n = {
-    ["vn"] = {
+    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<leader>tt"] = {
       function()
-        require("packer").loader "venn.nvim"
-        require("custom.plugins.venn").toggle_maps()
+         require("base46").toggle_theme()
       end,
-      "toggle venn mappings",
+      "toggle transparency",
     },
   },
 }
 
-M.truzen = {
-  n = {
-    ["<leader>ta"] = { "<cmd> TZAtaraxis <CR>", "truzen ataraxis" },
-    ["<leader>tm"] = { "<cmd> TZMinimalist <CR>", "truzen minimal" },
-    ["<leader>tf"] = { "<cmd> TZFocus <CR>", "truzen focus" },
-  },
-}
+-- more keybinds!
 
 return M
