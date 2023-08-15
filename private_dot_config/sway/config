@@ -40,7 +40,7 @@ seat * shortcuts_inhibitor enable
 
 ### Output configuration
     # Default wallpaper
-    output * bg ~/.local/share/wallpapers/wallhaven-1p398w.jpg stretch
+    output * bg ~/.local/share/wallpapers/wallhaven-j3m8y5.png stretch
     # random wallpaper on $mod+y
     bindsym --to-code $mod+y exec setrandom -r ~/.local/share/wallpapers  
 
@@ -240,7 +240,7 @@ seat * shortcuts_inhibitor enable
         # Start your launcher
         bindsym --to-code $mod+d exec $menu
         # bindsym --to-code $mod+c exec clipman pick -t STDOUT | fuzzel -d -w 40 -l 10 -b 222222ff -t 8AFF43ff | wl-copy 
-        bindsym --to-code $mod+c exec clipman pick -t CUSTOM -T 'tofi' 
+        bindsym --to-code $mod+c exec clipman pick -t CUSTOM -T 'tofi -c .config/tofi/clipboard' 
         
     # Brightness/Audio
         #brightness	
@@ -268,9 +268,9 @@ seat * shortcuts_inhibitor enable
         bindsym --locked --to-code $mod+o exec notify-send "$(playerctl metadata --format '{{ emoji(status) }}{{ title }}')" "$(playerctl metadata --format '{{ artist }} - {{ album }}\n{{ duration(position) }}|{{ duration(mpris:length)}}\n{{ playerName }}')" 
     
     # ScreenShot
-        bindsym --release Print exec "/usr/share/sway/scripts/grimshot save area - | swappy -f -"
-        bindsym --release Shift+Print exec "/usr/share/sway/scripts/grimshot save window - | swappy -f -"
-        bindsym --release Ctrl+Print exec "/usr/share/sway/scripts/grimshot save screen - | swappy -f -"
+        bindsym --release Print exec "/usr/share/sway/scripts/grimshot --cursor save area - | swappy -f -"
+        bindsym --release Shift+Print exec "/usr/share/sway/scripts/grimshot --cursor save window - | swappy -f -"
+        bindsym --release Ctrl+Print exec "/usr/share/sway/scripts/grimshot --cursor save screen - | swappy -f -"
     
     # Notifications
         bindsym --to-code $mod+n exec "swaync-client --hide-latest"
@@ -389,6 +389,8 @@ mode "$mode_hotkeygrab" {
         [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
         [app_id="(?i)(?:firefox|chromium)"] border none
         [title="(?i)(?:copying|deleting|moving)"] floating enable
+
+        [class="jetbrains-idea-ce"] border pixel
 
     }
 

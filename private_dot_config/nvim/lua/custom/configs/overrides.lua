@@ -14,6 +14,7 @@ M.treesitter = {
     "bash",
     "lua",
     "norg",
+    "terraform",
   },
 }
 
@@ -32,23 +33,25 @@ M.nvimtree = {
   },
 }
 
--- M.mason = {
---   ensure_installed = {
---     -- lua stuff
---     "lua-language-server",
---     "stylua",
---
---     -- web dev
---     "css-lsp",
---     "html-lsp",
---     "typescript-language-server",
---     "deno",
---     "emmet-ls",
---     "json-lsp",
---
---     -- shell
---     "shfmt",
---     "shellcheck",
---   },
--- }
+M.mason = {
+  ensure_installed = {
+    -- lua stuff
+    -- "lua-language-server",
+    -- "stylua",
+
+    -- web dev
+    -- "css-lsp",
+    -- "html-lsp",
+    -- "typescript-language-server",
+    -- "deno",
+    -- "emmet-ls",
+    -- "json-lsp",
+
+    -- shell
+    -- "shfmt",
+    -- "shellcheck",
+    "yamlls",
+  },
+}
+
 return M

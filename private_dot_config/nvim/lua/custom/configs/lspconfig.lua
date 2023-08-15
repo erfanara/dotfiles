@@ -12,11 +12,13 @@ local servers = {
   "emmet_ls",
   "tsserver",
   "gopls",
+  "golangci_lint_ls",
   "phpactor",
   -- "jedi_language_server",
   "pyright",
   "cmake",
-  "jsonls"
+  "jsonls",
+  "terraformls"
 }
 
 for _, lsp in ipairs(servers) do
@@ -25,6 +27,21 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig["yamlls"].setup{
+    settings = {
+    yaml = {
+      --... -- other settings. note this overrides the lspconfig defaults.
+      schemas = {
+        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/master-standalone-strict/all.json"] = "/*.k8s.yaml",
+        --... -- other schemas
+      },
+    },
+  }
+}
+lspconfig["golangci_lint_ls"].setup{
+  cmd = {"/usr/bin/golangci-lint"}
+}
 
 -- 
 -- lspconfig.pyright.setup { blabla}

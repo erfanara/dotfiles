@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -23,7 +23,7 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
@@ -58,6 +58,36 @@ local plugins = {
   --   "mg979/vim-visual-multi",
   --   lazy = false,
   -- }
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require "custom.configs.dap"
+      require('dap-go').setup()
+    end,
+    opts = overrides.dap,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    requires = { "mfussenegger/nvim-dap" },
+    config = function ()
+      require("dapui").setup()
+    end,
+    opts = overrides.dapui,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    requires = { "rcarriga/nvim-dap-ui" },
+    config = function ()
+      require("nvim-dap-virtual-text").setup()
+    end,
+  },
+  {
+    "leoluz/nvim-dap-go",
+    requires = { "mfussenegger/nvim-dap" },
+    config = function()
+      require "custom.configs.dapgo"
+    end,
+  }
 }
 
 return plugins

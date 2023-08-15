@@ -5,7 +5,7 @@
 # A complete reference of available options can be found in `man 5 tofi`.
 
 # Font
-font = Fredoka One
+font = monospace
 font-size = 20
 
 # Window Style
@@ -27,7 +27,7 @@ padding-right = 0
 prompt-text = "run:"
 prompt-padding = 30
 
-background-color = #fff0dc
+background-color = #000
 text-color = #4280a0
 
 prompt-background = #eebab1
