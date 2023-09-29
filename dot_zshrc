@@ -100,7 +100,7 @@ n()
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
-export NNN_OPTS="adUerx"
+export NNN_OPTS="adUex"
 export NNN_PLUG='f:finder;o:fzopen;d:dragdrop;x:xdgdefault;i:imgview;z:fzplug'
 export NNN_SEL='/tmp/nnn.sel'
 export NNN_FIFO='/tmp/nnn.fifo'
@@ -109,7 +109,7 @@ export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|l
 
 # Theme
 # trap 'source ~/.debug_vars' DEBUG
-theme_sh=/usr/bin/theme.sh
+theme_sh=theme.sh
 THEME=gruvbox-light-hard
 $theme_sh $THEME
 TRAPUSR1() {

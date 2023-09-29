@@ -36,8 +36,8 @@ M.nvimtree = {
 M.mason = {
   ensure_installed = {
     -- lua stuff
-    -- "lua-language-server",
-    -- "stylua",
+    "lua-language-server",
+    "stylua",
 
     -- web dev
     -- "css-lsp",
@@ -45,12 +45,15 @@ M.mason = {
     -- "typescript-language-server",
     -- "deno",
     -- "emmet-ls",
-    -- "json-lsp",
+    "json-lsp",
 
     -- shell
-    -- "shfmt",
-    -- "shellcheck",
-    "yamlls",
+    "shfmt",
+    "shellcheck",
+    "yamllint",
+
+    -- python
+    "pyright"
   },
 }
 
